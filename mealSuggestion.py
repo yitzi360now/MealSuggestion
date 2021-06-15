@@ -13,3 +13,5 @@ cursor.execute(query)
 tables = cursor.fetchall()
 for table in tables:
     print(table)
+
+# test
