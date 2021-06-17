@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="fitness360db@localhost" uuid="516b8df9-7948-4c37-adfe-67c602db1088">
+    <data-source source="LOCAL" name="fitness360db@localhost" uuid="03541e8c-647d-430b-8ba9-35fea6f79332">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
