@@ -1,6 +1,6 @@
 from datetime import datetime
 import dbConnect
-#
+
 # database connection
 cursor = dbConnect.db.cursor()
 
