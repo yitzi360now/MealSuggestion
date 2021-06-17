@@ -1,2 +1,2 @@
 alter table meals
-	add day_of_week int not null;
+	add weekday int not null default 1;
