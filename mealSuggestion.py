@@ -24,8 +24,10 @@ email = 'halfonamir1@gmail.com'
 query = "select meal_id,meal_date,meal_hour,weekday from fitness360db.meals where user_email = '" + email + "'"
 cursor.execute(query)
 mealTimes = cursor.fetchall()
-minDiff = 99999999999999
-minID = 0
+minDiff1 = 99999999999999
+minID1 = 0
+minDiff2 = 99999999999999
+minID2 = 0
 for meal in mealTimes:
     print(meal[2])
     hour = meal[2] + ':00'
@@ -38,19 +40,43 @@ for meal in mealTimes:
     timeDiff = min(timeDiff1.seconds // 60, timeDiff2.seconds // 60)
     weekdayDiff1 = abs(weekday - meal[3])
     weekdayDiff2 = 7 - weekdayDiff1
-    weekdayDiff = min(weekdayDiff1, weekdayDiff2)
-    print(weekdayDiff)
-    difference = weekdayDiff * 1000 + timeDiff
-    if difference < minDiff:
-        minDiff = difference
-        minID = meal[0]
-    print('\n')
+    weekdayDiffA = min(weekdayDiff1, weekdayDiff2)
+    print(weekdayDiffA)
+    difference1 = weekdayDiffA * 1000 + timeDiff
+    if difference1 < minDiff1:
+        minDiff1 = difference1
+        minID1 = meal[0]
 
-query = "select * from fitness360db.meals where meal_id =" + str(minID)
+
+
+    theDay = int(meal[3])
+    if theDay < 6:
+        theDay = 0
+    else:
+        theDay = 1
+    if weekday < 6:
+        weekday = 0
+    else:
+        weekday = 1
+    weekdayDiffB = abs(weekday - theDay)
+    print(weekdayDiffB)
+    difference2 = weekdayDiffB * 1000 + timeDiff
+    if difference2 < minDiff2:
+        minDiff2 = difference2
+        minID2 = meal[0]
+# print results based on first algorithm
+query = "select * from fitness360db.meals where meal_id =" + str(minID1)
 cursor.execute(query)
-bestMeal = cursor.fetchall()
-print(bestMeal)
-print(minDiff)
+bestMeal1 = cursor.fetchall()
+print(bestMeal1)
+print(minDiff1)
+print('----------------------------')
+# print results based on second algorithm
+query = "select * from fitness360db.meals where meal_id =" + str(minID2)
+cursor.execute(query)
+bestMeal2 = cursor.fetchall()
+print(bestMeal2)
+print(minDiff2)
 
 @app.route("/")
 def hello_world():
