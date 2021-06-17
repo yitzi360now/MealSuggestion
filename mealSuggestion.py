@@ -13,7 +13,7 @@ print(tdelta.seconds // 60)
 print("weekday: " + str(datetime.today().weekday()))
 
 email = 'halfonamir1@gmail.com'
-query = "select meal_id,meal_date,meal_hour,day_of_week from fitness360db.meals where user_email = '" + email + "'"
+query = "select meal_id,meal_date,meal_hour,weekday from fitness360db.meals where user_email = '" + email + "'"
 cursor.execute(query)
 mealTimes = cursor.fetchall()
 minDistance = 99999999999999
