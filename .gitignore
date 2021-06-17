@@ -1,1 +1,3 @@
-dbConnect.py
+venv
+.idea
+*.xml
