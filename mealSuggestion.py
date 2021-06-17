@@ -46,9 +46,6 @@ for meal in mealTimes:
     if difference1 < minDiff1:
         minDiff1 = difference1
         minID1 = meal[0]
-
-
-
     theDay = int(meal[3])
     if theDay < 6:
         theDay = 0
