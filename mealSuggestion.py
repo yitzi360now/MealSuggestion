@@ -43,12 +43,19 @@ for meal in mealTimes:
     difference = weekdayDiff * 1000 + timeDiff
     if difference < minDiff:
         minDiff = difference
-
+        minID = meal[0]
     print('\n')
+
+query = "select * from fitness360db.meals where meal_id =" + str(minID)
+cursor.execute(query)
+bestMeal = cursor.fetchall()
+print(bestMeal)
+print(minDiff)
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
