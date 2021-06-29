@@ -17,13 +17,17 @@ if weekday == 6:
 else:
     weekday += 2
 print("weekday: " + str(weekday))
-from flask import Flask
 
+# get username from client
 app = Flask(__name__)
-email = 'halfonamir1@gmail.com'
-query = "select meal_id,meal_date,meal_hour,weekday from fitness360db.meals where user_email = '" + email + "'"
+# email = 'halfonamir1@gmail.com'
+
+# get relevant meal data about user's meals
+query = "select meal_id,meal_date,meal_hour,weekday from fitness360db.meals where user_email = '" + app + "'"
 cursor.execute(query)
 mealTimes = cursor.fetchall()
+
+#  algorithm finds best fitting meal with minimal 'distance' based o hour of day and doy of week
 minDiff1 = 99999999999999
 minID1 = 0
 minDiff2 = 99999999999999
@@ -34,9 +38,6 @@ for meal in mealTimes:
     print(hour)
     timeDiff1 = datetime.strptime(current_time, FMT) - datetime.strptime(hour, FMT)
     timeDiff2 = datetime.strptime(hour, FMT) - datetime.strptime(current_time, FMT)
-    # print(timeDiff.seconds // 60)
-    # print(timeDiff2.seconds // 60)
-    # print(min(timeDiff.seconds // 60, timeDiff2.seconds // 60))
     timeDiff = min(timeDiff1.seconds // 60, timeDiff2.seconds // 60)
     weekdayDiff1 = abs(weekday - meal[3])
     weekdayDiff2 = 7 - weekdayDiff1
